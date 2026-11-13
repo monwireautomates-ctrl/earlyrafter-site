@@ -1,12 +1,375 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-AU">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Early Rafter</title>
+  <title>Pool Watch NSW by Early Rafter</title>
+  <meta name="description" content="A free weekly summary of new swimming pool DAs lodged across NSW. Where they are, what's being built, and which jobs include fencing, decks or retaining walls.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #ffffff;
+      --ink: #1d2733;
+      --ink-soft: #5b6673;
+      --rule: #e2e6ea;
+      --chalk: #2f6db5;
+      --chalk-deep: #1f4f8a;
+      --chalk-wash: #eaf2fb;
+      --navy: #15263d;
+      --sheet: #f6f8fa;
+      --measure: 40rem;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Archivo", system-ui, sans-serif;
+      font-size: 1.0625rem;
+      line-height: 1.6;
+      font-variation-settings: "wdth" 100;
+    }
+
+    a { color: var(--chalk); text-underline-offset: 0.15em; }
+    a:hover { text-decoration-thickness: 2px; }
+
+    :focus-visible {
+      outline: 2px solid var(--chalk);
+      outline-offset: 3px;
+    }
+
+    .wrap {
+      max-width: 46rem;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* Header */
+    .site-header {
+      padding: 1.5rem 0 0;
+      background: var(--chalk-wash);
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 700;
+      font-variation-settings: "wdth" 115;
+      letter-spacing: 0.01em;
+    }
+    .brand svg { width: 28px; height: 16px; }
+
+    /* Hero */
+    .hero {
+      padding: 3.5rem 0 3.5rem;
+      background: var(--chalk-wash);
+    }
+    .chalk-line {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin-bottom: 2.25rem;
+      overflow: visible;
+    }
+    .chalk-line path {
+      fill: none;
+      stroke: var(--chalk);
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 1;
+      stroke-dashoffset: 0;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .chalk-line path {
+        stroke-dashoffset: 1;
+        animation: snap 1.1s cubic-bezier(.6, 0, .2, 1) 0.25s forwards;
+      }
+    }
+    @keyframes snap { to { stroke-dashoffset: 0; } }
+
+    h1 {
+      margin: 0 0 1.25rem;
+      font-size: clamp(2.1rem, 6vw, 3.4rem);
+      line-height: 1.05;
+      font-weight: 800;
+      font-variation-settings: "wdth" 120;
+      letter-spacing: -0.01em;
+      max-width: 16ch;
+    }
+    .lede {
+      margin: 0 0 2rem;
+      max-width: var(--measure);
+      font-size: 1.1875rem;
+      color: var(--ink);
+    }
+
+    /* Signup form */
+    .signup {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      max-width: 32rem;
+    }
+    .signup label {
+      position: absolute;
+      width: 1px; height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+    .signup input[type="email"] {
+      flex: 1 1 15rem;
+      min-width: 0;
+      padding: 0.85rem 1rem;
+      font: inherit;
+      color: var(--ink);
+      background: var(--paper);
+      border: 1.5px solid #b9c2cc;
+      border-radius: 6px;
+    }
+    .signup input[type="email"]:focus-visible {
+      border-color: var(--chalk);
+      outline-offset: 1px;
+    }
+    .signup button {
+      flex: 0 0 auto;
+      padding: 0.85rem 1.4rem;
+      font: inherit;
+      font-weight: 700;
+      font-variation-settings: "wdth" 110;
+      color: #fff;
+      background: var(--chalk);
+      border: 0;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .signup button:hover { background: var(--chalk-deep); }
+    .fineprint {
+      margin: 0.75rem 0 0;
+      font-size: 0.9375rem;
+      color: var(--ink-soft);
+    }
+
+    /* Sections */
+    section {
+      padding: 3rem 0;
+      border-top: 1px solid var(--rule);
+    }
+    h2 {
+      margin: 0 0 1.25rem;
+      font-size: 1.6rem;
+      line-height: 1.2;
+      font-weight: 750;
+      font-variation-settings: "wdth" 115;
+    }
+    section > .wrap > p { max-width: var(--measure); }
+
+    .inside {
+      margin: 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      max-width: var(--measure);
+    }
+    .inside div { padding-left: 1rem; border-left: 3px solid var(--chalk); }
+    .inside dt { font-weight: 700; }
+    .inside dd { margin: 0.15rem 0 0; color: var(--ink-soft); }
+    @media (min-width: 40rem) {
+      .inside { grid-template-columns: 1fr 1fr; column-gap: 2rem; }
+    }
+
+    /* Sample issue */
+    .sheet {
+      margin-top: 1.5rem;
+      padding: 1.75rem 1.5rem;
+      background: var(--sheet);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      max-width: 36rem;
+      font-size: 0.98rem;
+    }
+    .sheet-meta {
+      margin: 0 0 1.25rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--rule);
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+    }
+    .sheet-meta strong { color: var(--ink); display: block; font-size: 1.05rem; }
+    .sheet ul strong { color: var(--chalk-deep); font-size: 1.1em; }
+    .sheet { border-top: 4px solid var(--chalk); }
+    .sheet h3 {
+      margin: 1.5rem 0 0.5rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+    .sheet ul, .sheet ol { margin: 0; padding-left: 1.25rem; }
+    .sheet li { margin: 0.15rem 0; }
+    .sheet p { margin: 0.4rem 0; }
+    .sheet .insight-title { font-weight: 700; margin-top: 1rem; }
+    .sheet small { display: block; margin-top: 1.5rem; color: var(--ink-soft); font-size: 0.8rem; line-height: 1.5; }
+
+    /* Waitlist */
+    .waitlist { background: var(--chalk-wash); border-top: 0; }
+    .waitlist .signup button { background: var(--navy); }
+    .waitlist .signup button:hover { background: var(--chalk-deep); }
+
+    /* Footer */
+    .site-footer {
+      padding: 2.5rem 0 3rem;
+      background: var(--navy);
+      color: #c9d4e1;
+      font-size: 0.9375rem;
+    }
+    .site-footer a { color: #fff; }
+    .site-footer a:focus-visible { outline-color: #fff; }
+    .site-footer p { margin: 0.3rem 0; max-width: var(--measure); }
+  </style>
 </head>
 <body>
-  <h1>Early Rafter</h1>
-  <p>Coming soon.</p>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/">
+        <svg viewBox="0 0 28 16" aria-hidden="true"><path d="M2 14 L14 3 L26 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Early Rafter
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="wrap">
+        <svg class="chalk-line" viewBox="0 0 700 120" preserveAspectRatio="none" aria-hidden="true">
+          <path pathLength="1" d="M4 116 L350 8 L696 116"/>
+        </svg>
+
+        <h1>New pool DAs across NSW, in your inbox every week.</h1>
+        <p class="lede">Pool Watch NSW is a free weekly summary for pool fencing, landscaping and pool supply businesses. Where the new pools are, what's being built, and which jobs include fencing, decks or retaining walls.</p>
+
+        <form class="signup" action="https://buttondown.com/api/emails/embed-subscribe/poolwatchnsw" method="post">
+          <label for="email-top">Email address</label>
+          <input type="email" name="email" id="email-top" placeholder="you@business.com.au" autocomplete="email" required>
+          <button type="submit">Get Pool Watch NSW</button>
+        </form>
+        <p class="fineprint">Free. One email a week. Unsubscribe any time.</p>
+      </div>
+    </div>
+
+    <section aria-labelledby="inside-heading">
+      <div class="wrap">
+        <h2 id="inside-heading">What's in each issue</h2>
+        <dl class="inside">
+          <div>
+            <dt>This week's numbers</dt>
+            <dd>How many new pool DAs were lodged, how many are pool-only jobs, and how many don't include fencing.</dd>
+          </div>
+          <div>
+            <dt>Where they are</dt>
+            <dd>A breakdown by region, from Sydney to the North Coast and inland.</dd>
+          </div>
+          <div>
+            <dt>The biggest pool-only projects</dt>
+            <dd>The top five by declared cost, with suburb and council.</dd>
+          </div>
+          <div>
+            <dt>What stands out</dt>
+            <dd>Two short notes on the work worth knowing about, like knock-down rebuilds or pools with decks and retaining walls.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section aria-labelledby="sample-heading">
+      <div class="wrap">
+        <h2 id="sample-heading">A recent issue</h2>
+        <p>This is what lands in your inbox. Every number comes straight from the official NSW data.</p>
+
+        <article class="sheet" aria-label="Sample issue, 6 to 12 November 2026">
+          <p class="sheet-meta"><strong>85 of 88 new pool DAs don't list fencing</strong>Pool Watch NSW, 6–12 Nov 2026</p>
+
+          <h3>This week at a glance</h3>
+          <ul>
+            <li><strong>88</strong> new pool DAs</li>
+            <li><strong>39</strong> pool only</li>
+            <li><strong>85</strong> without fencing in the DA</li>
+          </ul>
+
+          <h3>By region</h3>
+          <p>Sydney 38, North Coast 22, Regional Inland 9, Hunter 8, South Coast &amp; Illawarra 6, Central Coast 5</p>
+
+          <h3>Top 5 pool-only projects</h3>
+          <ol>
+            <li>Harrington Park, Camden Council: $236,060</li>
+            <li>Brunswick Heads, Byron Shire Council: $194,700</li>
+            <li>Albury, Albury City Council: $179,000</li>
+            <li>Kurnell, Sutherland Shire Council: $156,665</li>
+            <li>Baulkham Hills, The Hills Shire Council: $150,000</li>
+          </ol>
+
+          <h3>What stands out</h3>
+          <p class="insight-title">Knock-down rebuilds with pools, no fence listed</p>
+          <p>Seaforth, Vaucluse, Glenhaven and East Wardell are all demolition and dwelling house DAs, so they are knock-down rebuilds with a pool. None of them lists fences in scope, and every new pool needs a compliant fence.</p>
+          <p class="insight-title">Deck and retaining work alongside pools</p>
+          <p>North Balgowlah, Earlwood and Tuncurry list a balcony, deck or patio with the pool. Camden South, Gables and Wyoming list earthworks and retaining walls. These are the DAs with landscaping and outdoor work attached.</p>
+
+          <small>Data: NSW Planning Portal Online DA Data API. © State Government of NSW and NSW Department of Planning, Housing and Infrastructure, licensed under CC BY 4.0.</small>
+        </article>
+      </div>
+    </section>
+
+    <section class="waitlist" aria-labelledby="waitlist-heading">
+      <div class="wrap">
+        <h2 id="waitlist-heading">Want the full list?</h2>
+        <p>We're working on a <strong>paid</strong> add-on: every pool DA with its full address, plus a CSV export you can use in your own systems.</p>
+        <p>Pricing isn't set yet. Joining the waitlist is free and doesn't commit you to anything. We'll tell you the price before you're ever asked to pay.</p>
+        <form class="signup" action="https://buttondown.com/api/emails/embed-subscribe/poolwatchnsw" method="post">
+          <label for="email-waitlist">Email address</label>
+          <input type="email" name="email" id="email-waitlist" placeholder="you@business.com.au" autocomplete="email" required>
+          <input type="hidden" name="tag" value="full-list-waitlist">
+          <button type="submit">Join the waitlist</button>
+        </form>
+        <p class="fineprint">Free to join. No payment details needed. You'll also get the free weekly Pool Watch NSW email, and can unsubscribe any time.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="data-heading">
+      <div class="wrap">
+        <h2 id="data-heading">Where the data comes from</h2>
+        <p>Every issue is built from development applications published on the NSW Planning Portal, the state government's official system for lodging DAs. We check it daily, pick out every application that includes a swimming pool, and sort them by region and type of job.</p>
+        <p>It covers DAs lodged through the Planning Portal. Pools approved through other routes, such as complying development certificates, aren't included yet.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="join-heading">
+      <div class="wrap">
+        <h2 id="join-heading">Get next week's issue</h2>
+        <form class="signup" action="https://buttondown.com/api/emails/embed-subscribe/poolwatchnsw" method="post">
+          <label for="email-bottom">Email address</label>
+          <input type="email" name="email" id="email-bottom" placeholder="you@business.com.au" autocomplete="email" required>
+          <button type="submit">Get Pool Watch NSW</button>
+        </form>
+        <p class="fineprint">Free. One email a week. Unsubscribe any time.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Early Rafter publishes weekly building-approval data for Australian trades. Pool Watch NSW is our first newsletter.</p>
+      <p>Questions or feedback: <a href="mailto:hello@earlyrafter.com">hello@earlyrafter.com</a></p>
+      <p>© 2026 Early Rafter</p>
+    </div>
+  </footer>
+
 </body>
 </html>
