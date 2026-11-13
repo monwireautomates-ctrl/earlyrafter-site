@@ -123,6 +123,46 @@
     }
     .home-link:hover { background: var(--chalk-deep); }
 
+    .signup {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      max-width: 32rem;
+      margin-top: 1.25rem;
+    }
+    .signup label {
+      position: absolute;
+      width: 1px; height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+    .signup input[type="email"] {
+      flex: 1 1 15rem;
+      min-width: 0;
+      padding: 0.85rem 1rem;
+      font: inherit;
+      color: var(--ink);
+      background: var(--paper);
+      border: 1.5px solid #b9c2cc;
+      border-radius: 6px;
+    }
+    .signup input[type="email"]:focus-visible { border-color: var(--chalk); outline-offset: 1px; }
+    .signup button {
+      flex: 0 0 auto;
+      padding: 0.85rem 1.4rem;
+      font: inherit;
+      font-weight: 700;
+      font-variation-settings: "wdth" 110;
+      color: #fff;
+      background: var(--navy);
+      border: 0;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .signup button:hover { background: var(--chalk-deep); }
+    .block .fineprint { margin-top: 0.75rem; font-size: 0.9375rem; color: var(--ink-soft); }
+
     .site-footer {
       padding: 2rem 0 2.5rem;
       background: var(--navy);
@@ -160,14 +200,20 @@
       </div>
 
       <div class="block">
-        <h2>Joined the full-list waitlist?</h2>
-        <p class="note">The full list with addresses and a CSV export is a <strong>paid</strong> add-on that's still in the works. You're not signed up for anything paid. When it's ready, we'll email you the price first, and you'll only pay if you choose to.</p>
+        <h2>Want the full list?</h2>
+        <p class="note">The full list with addresses and a CSV export is a <strong>paid</strong> add-on that's still in the works. Joining the waitlist is free and you're not signed up for anything paid. When it's ready, we'll email you the price first, and you'll only pay if you choose to.</p>
+        <form class="signup" action="https://buttondown.com/api/emails/embed-subscribe/poolwatchnsw" method="post">
+          <label for="email-waitlist">Email address</label>
+          <input type="email" name="email" id="email-waitlist" placeholder="you@business.com.au" autocomplete="email" required>
+          <input type="hidden" name="tag" value="full-list-waitlist">
+          <button type="submit">Join the waitlist</button>
+        </form>
+        <p class="fineprint">Free to join. No payment details needed. Use the same email you just subscribed with.</p>
       </div>
 
       <div class="block">
         <h2>Know someone in the pool trade?</h2>
         <p>Pool Watch NSW is free. Send them to <a href="/">earlyrafter.com</a> to sign up.</p>
-        <a class="home-link" href="/">Back to Early Rafter</a>
       </div>
     </div>
   </main>
