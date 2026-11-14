@@ -218,7 +218,12 @@
     .sheet ul, .sheet ol { margin: 0; padding-left: 1.25rem; }
     .sheet li { margin: 0.15rem 0; }
     .sheet p { margin: 0.4rem 0; }
-    .sheet .insight-title { font-weight: 700; margin-top: 1rem; }
+    .sheet .teaser {
+      padding: 0.75rem 1rem;
+      background: var(--chalk-wash);
+      border-left: 3px solid var(--chalk);
+      border-radius: 0 4px 4px 0;
+    }
     .sheet small { display: block; margin-top: 1.5rem; color: var(--ink-soft); font-size: 0.8rem; line-height: 1.5; }
 
     /* Waitlist */
@@ -294,24 +299,24 @@
 
     <section aria-labelledby="sample-heading">
       <div class="wrap">
-        <h2 id="sample-heading">A recent issue</h2>
-        <p>This is what lands in your inbox. Every number comes straight from the official NSW data.</p>
+        <h2 id="sample-heading">This week's issue</h2>
+        <p>Updated every Monday from the official NSW data. This is what lands in your inbox.</p>
 
-        <article class="sheet" aria-label="Sample issue, 6 to 12 November 2026">
-          <p class="sheet-meta"><strong>85 of 88 new pool DAs don't list fencing</strong>Pool Watch NSW, 6–12 Nov 2026</p>
+        <article class="sheet" id="latest" aria-label="Latest issue">
+          <p class="sheet-meta"><strong><span data-field="pools_without_fence_in_da">114</span> of <span data-field="total_pools">121</span> new pool DAs don't list fencing</strong>Pool Watch NSW, <span data-field="period">8–14 Nov 2026</span></p>
 
           <h3>This week at a glance</h3>
           <ul>
-            <li><strong>88</strong> new pool DAs</li>
-            <li><strong>39</strong> pool only</li>
-            <li><strong>85</strong> without fencing in the DA</li>
+            <li><strong data-field="total_pools">121</strong> new pool DAs</li>
+            <li><strong data-field="pool_only_count">49</strong> pool only</li>
+            <li><strong data-field="pools_without_fence_in_da">114</strong> without fencing in the DA</li>
           </ul>
 
           <h3>By region</h3>
-          <p>Sydney 38, North Coast 22, Regional Inland 9, Hunter 8, South Coast &amp; Illawarra 6, Central Coast 5</p>
+          <p id="latest-regions">Sydney 47, North Coast 31, Hunter 16, Regional Inland 12, South Coast &amp; Illawarra 10, Central Coast 5</p>
 
           <h3>Top 5 pool-only projects</h3>
-          <ol>
+          <ol id="latest-top">
             <li>Harrington Park, Camden Council: $236,060</li>
             <li>Brunswick Heads, Byron Shire Council: $194,700</li>
             <li>Albury, Albury City Council: $179,000</li>
@@ -320,10 +325,7 @@
           </ol>
 
           <h3>What stands out</h3>
-          <p class="insight-title">Knock-down rebuilds with pools, no fence listed</p>
-          <p>Seaforth, Vaucluse, Glenhaven and East Wardell are all demolition and dwelling house DAs, so they are knock-down rebuilds with a pool. None of them lists fences in scope, and every new pool needs a compliant fence.</p>
-          <p class="insight-title">Deck and retaining work alongside pools</p>
-          <p>North Balgowlah, Earlwood and Tuncurry list a balcony, deck or patio with the pool. Camden South, Gables and Wyoming list earthworks and retaining walls. These are the DAs with landscaping and outdoor work attached.</p>
+          <p class="teaser">Each issue also points out where the fencing and landscaping work is this week: knock-down rebuilds, retaining walls, decks. <a href="#email-top">Subscribe free</a> to get it on Monday.</p>
 
           <small>Data: NSW Planning Portal Online DA Data API. © State Government of NSW and NSW Department of Planning, Housing and Infrastructure, licensed under CC BY 4.0.</small>
         </article>
@@ -373,6 +375,34 @@
       <p>© 2026 Early Rafter</p>
     </div>
   </footer>
+
+  <script>
+    // Fill "This week's issue" from latest.json, written by the Monday agent.
+    // If the file can't be loaded, the numbers already in the page stay.
+    fetch("/latest.json", { cache: "no-store" })
+      .then(function (response) {
+        if (!response.ok) throw new Error("latest.json not found");
+        return response.json();
+      })
+      .then(function (data) {
+        document.querySelectorAll("#latest [data-field]").forEach(function (el) {
+          el.textContent = data[el.dataset.field];
+        });
+
+        document.getElementById("latest-regions").textContent = data.by_region
+          .map(function (r) { return r.name + " " + r.count; })
+          .join(", ");
+
+        var list = document.getElementById("latest-top");
+        list.replaceChildren();
+        data.top_pool_only.forEach(function (p) {
+          var item = document.createElement("li");
+          item.textContent = p.suburb + ", " + p.council + ": $" + p.cost.toLocaleString("en-AU");
+          list.appendChild(item);
+        });
+      })
+      .catch(function () {});
+  </script>
 
 </body>
 </html>

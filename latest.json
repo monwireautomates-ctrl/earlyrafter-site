@@ -1,0 +1,59 @@
+{
+  "period": "8\u201314 Nov 2026",
+  "total_pools": 121,
+  "pool_only_count": 49,
+  "pools_without_fence_in_da": 114,
+  "by_region": [
+    {
+      "name": "Sydney",
+      "count": 47
+    },
+    {
+      "name": "North Coast",
+      "count": 31
+    },
+    {
+      "name": "Hunter",
+      "count": 16
+    },
+    {
+      "name": "Regional Inland",
+      "count": 12
+    },
+    {
+      "name": "South Coast & Illawarra",
+      "count": 10
+    },
+    {
+      "name": "Central Coast",
+      "count": 5
+    }
+  ],
+  "top_pool_only": [
+    {
+      "suburb": "Harrington Park",
+      "council": "Camden Council",
+      "cost": 236060
+    },
+    {
+      "suburb": "Brunswick Heads",
+      "council": "Byron Shire Council",
+      "cost": 194700
+    },
+    {
+      "suburb": "Albury",
+      "council": "Albury City Council",
+      "cost": 179000
+    },
+    {
+      "suburb": "Kurnell",
+      "council": "Sutherland Shire Council",
+      "cost": 156665
+    },
+    {
+      "suburb": "Baulkham Hills",
+      "council": "The Hills Shire Council",
+      "cost": 150000
+    }
+  ]
+}
