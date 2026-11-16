@@ -1,8 +1,8 @@
 {
-  "period": "8\u201314 Nov 2026",
-  "total_pools": 121,
-  "pool_only_count": 49,
-  "pools_without_fence_in_da": 114,
+  "period": "10\u201316 Nov 2026",
+  "total_pools": 122,
+  "pool_only_count": 50,
+  "pools_without_fence_in_da": 115,
   "by_region": [
     {
       "name": "Sydney",
@@ -14,7 +14,7 @@
     },
     {
       "name": "Hunter",
-      "count": 16
+      "count": 17
     },
     {
       "name": "Regional Inland",
