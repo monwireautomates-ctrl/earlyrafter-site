@@ -1,59 +1,59 @@
 {
-  "period": "10\u201316 Nov 2026",
-  "total_pools": 122,
-  "pool_only_count": 50,
-  "pools_without_fence_in_da": 115,
+  "period": "17\u201323 Nov 2026",
+  "total_pools": 73,
+  "pool_only_count": 27,
+  "pools_without_fence_in_da": 68,
   "by_region": [
     {
       "name": "Sydney",
-      "count": 47
+      "count": 27
     },
     {
       "name": "North Coast",
-      "count": 31
+      "count": 14
     },
     {
       "name": "Hunter",
-      "count": 17
-    },
-    {
-      "name": "Regional Inland",
-      "count": 12
+      "count": 11
     },
     {
       "name": "South Coast & Illawarra",
-      "count": 10
+      "count": 9
+    },
+    {
+      "name": "Regional Inland",
+      "count": 8
     },
     {
       "name": "Central Coast",
-      "count": 5
+      "count": 4
     }
   ],
   "top_pool_only": [
     {
-      "suburb": "Harrington Park",
-      "council": "Camden Council",
-      "cost": 236060
+      "suburb": "Strathfield",
+      "council": "Strathfield Municipal Council",
+      "cost": 3177360
     },
     {
-      "suburb": "Brunswick Heads",
-      "council": "Byron Shire Council",
-      "cost": 194700
-    },
-    {
-      "suburb": "Albury",
-      "council": "Albury City Council",
-      "cost": 179000
-    },
-    {
-      "suburb": "Kurnell",
-      "council": "Sutherland Shire Council",
-      "cost": 156665
-    },
-    {
-      "suburb": "Baulkham Hills",
+      "suburb": "Gables",
       "council": "The Hills Shire Council",
-      "cost": 150000
+      "cost": 980000
+    },
+    {
+      "suburb": "Menai",
+      "council": "Sutherland Shire Council",
+      "cost": 386221
+    },
+    {
+      "suburb": "Menai",
+      "council": "Sutherland Shire Council",
+      "cost": 315000
+    },
+    {
+      "suburb": "Castle Hill",
+      "council": "The Hills Shire Council",
+      "cost": 192500
     }
   ]
 }
